@@ -148,35 +148,22 @@
             - 50% cont for payment
 
             <div class="btn-group btn-group-justified" role="group">
-                <a href="" class="btn btn-default">Pay Ticket</a>
+                <div class="btn-group">
+                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Pay Ticket <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Online via Credit Card</a></li>
+                    <li><a href="#">Check via Mail</a></li>
+                    <li><a href="#">Alternative</a></li>
+                  </ul>
+                </div>
                 <a href="/legal" class="btn btn-default">Get Legal Help</a>
                 <a href="https://www.nudgemail.com/" class="btn btn-default"> Set a email reminder </a>
               </div>
           </div>
         {{ end }}
       </div>
-
-      {{ citation.violations.each do |violation| }}
-        <div class="panel panel-default">
-          <div class="panel-body">
-            <table class="table">
-              
-            </table>
-
-            <div>
-              Comments about this violation
-            </div>
-
-            <br>
-
-            <div class="btn-group btn-group-justified" role="group">
-              <a href="" class="btn btn-default">Pay Ticket</a>
-              <a href="/legal" class="btn btn-default">Get Legal Help</a>
-              <a href="https://www.nudgemail.com/" class="btn btn-default"> Set a email reminder </a>
-            </div>
-          </div>
-        </div>
-      {{ end }}
     {{ end }}
 
     <div class="panel panel-default">

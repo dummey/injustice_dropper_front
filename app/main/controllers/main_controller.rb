@@ -103,7 +103,6 @@ module Main
       address_url = "http://maps.googleapis.com/maps/api/geocode/json?address=#{address}"
       # citation_url = "http://jsonplaceholder.typicode.com/posts"
       HTTP.get(address_url, {}) do |response|
-
         page._stuffs = response.json
         page._ticket_lat = page._stuffs._results.first._geometry._location._lat
         page._ticket_lng = page._stuffs._results.first._geometry._location._lng
@@ -112,7 +111,7 @@ module Main
 
     #Court Stuff
     def lookup_court
-      page._court_result = {name: "The Blah", address: "4240 Duncan Avenue, 2nd Floor St. Louis, MO 63110", lat: 38.6282597, lng: -90.20322449999999}
+      page._court_result = {name: "STL City Court", address: "1520 Market St, St Louis, MO 63103, USA", lat: 38.6282597, lng: -90.20322449999999}
       page._court_lat = page._court_result._lat
       page._court_lng = page._court_result._lng
 
@@ -120,29 +119,32 @@ module Main
     end
 
     def map_court
-      address_to_long_lat(page._court_lookup)
+      address_to_long_lat(page._court_lookup).then do
+        page._ticket_lat
+        page._ticket_lng
 
-      `
-        var myOptions = {zoom:12,
-            center:new google.maps.LatLng(#{page._ticket_lat},#{page._ticket_lng}),
-          mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
-        map = new google.maps.Map(document.getElementById("gmap_canvas"), myOptions);
-        marker = new google.maps.Marker({map: map,position: new google.maps.LatLng(#{page._court_lat},#{page._court_lng})});
-        infowindow = new google.maps.InfoWindow({content:"Stl City Court" });
-        google.maps.event.addListener(marker, "click", function(){
+        `
+          var myOptions = {zoom:12,
+              center:new google.maps.LatLng(#{page._ticket_lat},#{page._ticket_lng}),
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+          };
+          map = new google.maps.Map(document.getElementById("gmap_canvas"), myOptions);
+          marker = new google.maps.Marker({map: map,position: new google.maps.LatLng(#{page._court_lat},#{page._court_lng})});
+          infowindow = new google.maps.InfoWindow({content:"#{page._court_result.name}" });
+          google.maps.event.addListener(marker, "click", function(){
+            infowindow.open(map,marker);
+          });
           infowindow.open(map,marker);
-        });
-        infowindow.open(map,marker);
 
-        marker2 = new google.maps.Marker({map: map,position: new google.maps.LatLng(#{page._ticket_lat},#{page._ticket_lng})});
-        infowindow = new google.maps.InfoWindow({content:"Shit went down here" });
-        google.maps.event.addListener(marker2, "click", function(){
+          marker2 = new google.maps.Marker({map: map,position: new google.maps.LatLng(#{page._ticket_lat},#{page._ticket_lng})});
+          infowindow = new google.maps.InfoWindow({content:"Shit went down here" });
+          google.maps.event.addListener(marker2, "click", function(){
+            infowindow.open(map,marker2);
+          });
           infowindow.open(map,marker2);
-        });
-        infowindow.open(map,marker2);
 
-      `
+        `
+      end
     end
 
     #warrant stuff

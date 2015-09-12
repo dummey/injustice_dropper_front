@@ -4,6 +4,7 @@ client '/about', action: 'about'
 client '/ticket', action: 'ticket'
 client '/pay_ticket', action: 'pay_ticket'
 client '/legal', action: 'legal'
+client '/court', action: 'court'
 
 # Routes for login and signup, provided by user_templates component gem
 # client '/signup', component: 'user_templates', controller: 'signup'

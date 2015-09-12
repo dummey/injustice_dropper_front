@@ -1,0 +1,83 @@
+<:Title>
+  Court Lookup
+
+<:Body>
+  <h1>Court Lookup</h1>
+
+  <p>We can help find which municipal juristiciton your ticket was given in. Just provide us with an address or cross street where you recieved the ticket.</p>
+
+  <div class="input-group">
+    <input type="text" class="form-control" placeholder="Address or Cross Street" value="{{ page._search1 }}"/>
+    <span class="input-group-btn">
+      <button type="button" e-click="lookup_court" class="btn btn-default">Lookup Court</button>
+    </span>
+  </div>
+
+  <br>
+
+  <div class="panel panel-default {{ unless page._court_result }} hidden {{ end }}">
+    <div class="panel-heading">
+      <h3 class="panel-title">{{page._court_result._name}}</h3>
+    </div>
+    <div class="panel-body">
+      <!-- <div style="overflow:hidden;height:500px;width:600px;" class="center-block"> -->
+        <div id="gmap_canvas" style="height:350px;width:600px" class="center-block">
+          
+        </div>
+      <!-- </div> -->
+
+      <br>
+
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h5> Site of Ticket </h5>
+        </div>
+
+        <div class="panel-body">
+          <table class="table">
+            <tr>
+              <td>Address of Ticket:</td>
+              <td>Somewhere</td>
+            </tr>
+            <tr>
+              <td>Coordinates:</td>
+              <td>Somewhere</td>
+            </tr>
+          </table>
+          <a href class="btn btn-default">Click for street view</a>
+        </div>
+      </div>
+
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h5> Court Location </h5>
+        </div>
+
+        <div class="panel-body">
+          <table class="table">
+            <tr>
+              <td>Court Address:</td>
+              <td>Somewhere</td>
+            </tr>
+            <tr>
+              <td>Phone Number:</td>
+              <td>Somewhere</td>
+            </tr>
+            <tr>
+              <td>Website:</td>
+              <td>Somewhere</td>
+            </tr>
+            <tr>
+              <td>Email:</td>
+              <td>Somewhere</td>
+            </tr>
+          </table>
+
+          <a href class="btn btn-default">Click for street view</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+

@@ -10,7 +10,7 @@
     <!-- <form e-submit="add_todo"> -->
       <input type="text" class="form-control" placeholder="Address or Cross Street" value="{{ page._court_lookup }}"/>
       <span class="input-group-btn">
-        <button type="button" e-click="lookup_court" class="btn btn-default">Lookup Court</button>
+        <button type="button" e-click="lookup_court" class="btn btn-default {{ unless page._court_lookup }} disabled {{ end }}">Lookup Court</button>
       </span>
     <!-- </form> -->
   </div>

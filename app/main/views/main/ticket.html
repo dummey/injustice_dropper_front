@@ -24,74 +24,152 @@
 
   <hr>
 
-  <div class="{{ unless page._citation_result }} hidden {{ end }}"> 
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h5>{{ page._violations.count }} Violations Found</h5>
-      </div>
-      <div class="panel-body">
-        <table class="table">
-          <tr>
-            <td> Name </td>
-            <td> 
-              {{ page._violations.first._first_name }} {{ page._violations.first._last_name }} 
-            </td>
-          </tr>
-          <tr>
-            <td>Date of Birth</td>
-            <td>{{ page._violations.first._date_of_birth }}</td>
-          </tr>
-        </table>
-      </div>
-    </div>
+  <h3> {{ page._citations.count }} Found </h3>
 
-    {{ page._violations.each do |violation| }}
+  <div class="{{ unless page._citations }} hidden {{ end }}"> 
+    {{ page._citations.each do |citation| }}
       <div class="panel panel-default">
+        <div class="panel-heading">
+          <h5>Citation: <b>{{ citation._citation_number }}</b></h5>
+        </div>
         <div class="panel-body">
           <table class="table">
             <tr>
+              <td> Name </td>
+              <td> 
+                {{ page._citations.first._first_name }} {{ page._citations.first._last_name }} 
+              </td>
+            </tr>
+            <tr>
+              <td>Date of Birth</td>
+              <td>{{ page._citations.first._date_of_birth }}</td>
+            </tr>
+            <tr>
               <td>Citation Number</td>
-              <td>{{ violation._citation_number }}</td>
+              <td>{{ citation._citation_number }}</td>
             </tr>
             <tr>
               <td>Citation Date</td>
-              <td>{{ violation._citation_date }}</td>
-            </tr>
-            <tr>
-              <td>Violation Number</td>
-              <td>{{ violation._violation_id }}</td>
-            </tr>
-            <tr>
-              <td>Violation Date</td>
-              <td>{{ violation._violation_date }}</td>
+              <td>{{ citation._citation_date }}</td>
             </tr>
             <tr>
               <td>Court Date</td>
-              <td>{{ violation._court_date }}</td>
+              <td>{{ citation._court_date }}</td>
             </tr>
             <tr>
               <td>Court Location</td>
-              <td>{{ violation._court_location }}</td>
+              <td>{{ citation._court_location }}</td>
             </tr>
             <tr>
               <td>Court Address</td>
-              <td>{{ violation._court_address }}</td>
+              <td>{{ citation._court_address }}</td>
             </tr>
           </table>
+        </div>
 
-          <div>
-            Comments about this violation
+        {{ citation._violations.each do |violation| }}
+          <div class="panel-heading">
+            <h5>Violation: <b>{{ violation._violation_number }}</b></h5>
           </div>
+          <div class="panel-body">
 
-          <br>
+            <table class="table">
+              <tr>
+                <td>
+                  Violation Number
+                </td>
+                <td>
+                  {{ violation._violation_number}}
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  Description
+                </td>
+                <td>
+                  {{ violation._violation_description}}
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  Warrant Status
+                </td>
+                <td> 
+                  {{ violation._warrant_status}}
+                </td>
+              </tr>
+              <tr>
+                <td>
+                Warrant Number
+                </td>
+                <td>
+                  {{ violation._warrant_number }}
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  Status
+                </td>
+                <td>
+                  {{ violation._status }}
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  Status Date
+                </td>
+                <td>
+                  {{ violation._status_date }}
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  Fine Amount
+                </td>
+                <td>
+                  {{ violation._fine_amount }}
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  Court Cost
+                </td>
+                <td>
+                  {{ violation._court_cost }}
+                </td>
+              </tr>
+            </table>
 
-          <div class="btn-group btn-group-justified" role="group">
-            <a href="" class="btn btn-default">Pay Ticket</a>
-            <a href="/legal" class="btn btn-default">Get Legal Help</a>
-            <a href="https://www.nudgemail.com/" class="btn btn-default"> Set a email reminder </a>
+            <div class="btn-group btn-group-justified" role="group">
+                <a href="" class="btn btn-default">Pay Ticket</a>
+                <a href="/legal" class="btn btn-default">Get Legal Help</a>
+                <a href="https://www.nudgemail.com/" class="btn btn-default"> Set a email reminder </a>
+              </div>
+          </div>
+        {{ end }}
+      </div>
+
+      {{ citation.violations.each do |violation| }}
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <table class="table">
+              
+            </table>
+
+            <div>
+              Comments about this violation
+            </div>
+
+            <br>
+
+            <div class="btn-group btn-group-justified" role="group">
+              <a href="" class="btn btn-default">Pay Ticket</a>
+              <a href="/legal" class="btn btn-default">Get Legal Help</a>
+              <a href="https://www.nudgemail.com/" class="btn btn-default"> Set a email reminder </a>
+            </div>
           </div>
         </div>
-      </div>
+      {{ end }}
     {{ end }}
 
     <div class="panel panel-default">

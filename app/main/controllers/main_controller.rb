@@ -52,9 +52,7 @@ module Main
     end
 
     def lookup_citation
-      page._citation_result = "Loading..."
-
-      page._violations = [
+      page._citations = [
        {
           "id" => 1,
           "citation_number" => 789674515,
@@ -68,7 +66,8 @@ module Main
           "drivers_license_number" => "O890037612                                                                                                                                                                                              ",
           "court_date" => "2015-11-12",
           "court_location" => "COUNTRY CLUB HILLS                                                                                                                                                                                      ",
-          "court_address" => "7422 Eunice Avenue                                                                                                                                                                                      "
+          "court_address" => "7422 Eunice Avenue ",
+          "violations" => [{name: "hello world"}, {name: "Bye night"}]
         },
         {
           "id" => 2,
@@ -89,13 +88,13 @@ module Main
 
       #'Access-Control-Allow-Origin' => '*', 
       citation_url = "http://stark-refuge-7404.herokuapp.com/citations"
-      HTTP.get(citation_url, {'Access-Control-Allow-Origin' => '*', "crossDomain" => true, "dataType" => "jsonp"}) do |response|
-        stuff = response.json
-        puts stuff.first['name']
-        page._citation_result = stuff.first['name']
-        page._citation_number = 12345
-        # page._citation_result = stuff.object_id
-      end
+      # HTTP.get(citation_url, {'Access-Control-Allow-Origin' => '*', "crossDomain" => true, "dataType" => "jsonp"}) do |response|
+      #   stuff = response.json
+      #   puts stuff.first['name']
+      #   page._citation_result = stuff.first['name']
+      #   page._citation_number = 12345
+      #   # page._citation_result = stuff.object_id
+      # end
     end
 
     #Court Stuff

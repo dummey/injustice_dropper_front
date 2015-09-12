@@ -88,13 +88,15 @@ module Main
 
       #'Access-Control-Allow-Origin' => '*', 
       citation_url = "http://stark-refuge-7404.herokuapp.com/citations"
-      # HTTP.get(citation_url, {'Access-Control-Allow-Origin' => '*', "crossDomain" => true, "dataType" => "jsonp"}) do |response|
-      #   stuff = response.json
-      #   puts stuff.first['name']
-      #   page._citation_result = stuff.first['name']
-      #   page._citation_number = 12345
-      #   # page._citation_result = stuff.object_id
-      # end
+      # citation_url = "http://jsonplaceholder.typicode.com/posts"
+      HTTP.get(citation_url, 
+        {'Access-Control-Allow-Origin' => '*', 
+          "crossDomain" => true, 
+          "dataType" => "jsonp"} ) do |response|
+
+        puts response
+
+      end
     end
 
     #Court Stuff

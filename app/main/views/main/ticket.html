@@ -1,15 +1,15 @@
 <:Title>
-  Tickets
+  Ticket Lookup
 
 <:Body>
-  <h1>Tickets</h1>
+  <h1>Ticket Lookup</h1>
 
   <p>Please provide two of the following: Citation Number, Citation Date, Driver License Number, Full Name, DOB, Address</p>
 
   <form e-submit="lookup_citation" role="form">
     <div class="form-group">
       <!-- <label for="exampleInputEmail1">Email address</label> -->
-      <input type="text" class="form-control" placeholder="Citation Number, Citation Date, Driver License Number, Full Name, DOB, Address" value="{{ page._search1 }}" />
+      <input type="text" class="form-control" placeholder="First piece of identification" value="{{ page._search1 }}" />
 
     </div>
 
@@ -18,13 +18,13 @@
     </div>
 
     <div class="form-group">
-      <button e-click="lookup_citation" class="btn btn-default">Lookup Ticket</button>
+      <button e-click="lookup_citation" class="btn btn-default {{unless page._search1 && page._search2 }} disabled {{ end }}">Lookup Ticket</button>
     </div>
   </form>
 
   <hr>
 
-  <h3> {{ page._citations.count }} Found </h3>
+  <h3> {{ page._citations.count }} Citations Found </h3>
 
   <div class="{{ unless page._citations }} hidden {{ end }}"> 
     {{ page._citations.each do |citation| }}
@@ -100,7 +100,7 @@
               </tr>
               <tr>
                 <td>
-                Warrant Number
+                  Warrant Number
                 </td>
                 <td>
                   {{ violation._warrant_number }}
@@ -139,6 +139,13 @@
                 </td>
               </tr>
             </table>
+
+            Percentage of open violations of this type:
+            - 40%
+
+            Breakdown of how this type of violation is handled:
+            - 10% payment 
+            - 50% cont for payment
 
             <div class="btn-group btn-group-justified" role="group">
                 <a href="" class="btn btn-default">Pay Ticket</a>

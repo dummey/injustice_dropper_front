@@ -22,17 +22,87 @@
     </div>
   </form>
 
-  <div class="result {{ unless page._citation_result }} hidden {{ end }}"> 
-    {{ page._citation_result }}
+  <hr>
 
-    <div class="result_action">
-      <a href=" {{ url_for(action: 'pay_ticket', citation_number: page._citation_number) }}" class="btn btn-default">
-        Pay for Ticket
-      </a>
+  <div class="{{ unless page._citation_result }} hidden {{ end }}"> 
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h5>{{ page._violations.count }} Violations Found</h5>
+      </div>
+      <div class="panel-body">
+        <table class="table">
+          <tr>
+            <td> Name </td>
+            <td> 
+              {{ page._violations.first._first_name }} {{ page._violations.first._last_name }} 
+            </td>
+          </tr>
+          <tr>
+            <td>Date of Birth</td>
+            <td>{{ page._violations.first._date_of_birth }}</td>
+          </tr>
+        </table>
+      </div>
+    </div>
 
-      <a href="{{ url_for(action: 'legal', citation_number: page._citation_number) }}" class="btn btn-default">
-        Get Legal Help
-      </a>
+    {{ page._violations.each do |violation| }}
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <table class="table">
+            <tr>
+              <td>Citation Number</td>
+              <td>{{ violation._citation_number }}</td>
+            </tr>
+            <tr>
+              <td>Citation Date</td>
+              <td>{{ violation._citation_date }}</td>
+            </tr>
+            <tr>
+              <td>Violation Number</td>
+              <td>{{ violation._violation_id }}</td>
+            </tr>
+            <tr>
+              <td>Violation Date</td>
+              <td>{{ violation._violation_date }}</td>
+            </tr>
+            <tr>
+              <td>Court Date</td>
+              <td>{{ violation._court_date }}</td>
+            </tr>
+            <tr>
+              <td>Court Location</td>
+              <td>{{ violation._court_location }}</td>
+            </tr>
+            <tr>
+              <td>Court Address</td>
+              <td>{{ violation._court_address }}</td>
+            </tr>
+          </table>
+
+          <div>
+            Comments about this violation
+          </div>
+
+          <br>
+
+          <div class="btn-group btn-group-justified" role="group">
+            <a href="" class="btn btn-default">Pay Ticket</a>
+            <a href="/legal" class="btn btn-default">Get Legal Help</a>
+            <a href="https://www.nudgemail.com/" class="btn btn-default"> Set a email reminder </a>
+          </div>
+        </div>
+      </div>
+    {{ end }}
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h5>Alternatives</h5>
+      </div>
+      <div class="panel-body">
+        Given this type of ticket, here are alternative things you can do: 
+        1. Get legal help!
+        2. something else
+      </div>
     </div>
   </div>
 

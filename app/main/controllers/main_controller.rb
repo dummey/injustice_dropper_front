@@ -54,8 +54,42 @@ module Main
     def lookup_citation
       page._citation_result = "Loading..."
 
+      page._violations = [
+       {
+          "id" => 1,
+          "citation_number" => 789674515,
+          "citation_date" => "2015-03-09",
+          "first_name" => "Wanda                                                                                                                                                                                                   ",
+          "last_name" => "Phillips                                                                                                                                                                                                ",
+          "date_of_birth" => "1975-12-30",
+          "defendant_address" => "0 Erie Road                                                                                                                                                                                             ",
+          "defendant_city" => "DES PERES                                                                                                                                                                                               ",
+          "defendant_state" => "MO",
+          "drivers_license_number" => "O890037612                                                                                                                                                                                              ",
+          "court_date" => "2015-11-12",
+          "court_location" => "COUNTRY CLUB HILLS                                                                                                                                                                                      ",
+          "court_address" => "7422 Eunice Avenue                                                                                                                                                                                      "
+        },
+        {
+          "id" => 2,
+          "citation_number" => 513276502,
+          "citation_date" => "2015-03-15",
+          "first_name" => "Mildred                                                                                                                                                                                                 ",
+          "last_name" => "Collins                                                                                                                                                                                                 ",
+          "date_of_birth" => "1960-10-31",
+          "defendant_address" => "856 Banding Trail                                                                                                                                                                                       ",
+          "defendant_city" => "CHESTERFIELD                                                                                                                                                                                            ",
+          "defendant_state" => "MO",
+          "drivers_license_number" => "",
+          "court_date" => "2015-09-16",
+          "court_location" => "FLORISSANT                                                                                                                                                                                              ",
+          "court_address" => "315 Howdershell Road                                                                                                                                                                                    "
+        },
+      ]
+
       #'Access-Control-Allow-Origin' => '*', 
-      HTTP.get("http://jsonplaceholder.typicode.com/users", {"dataType" => "jsonp"}) do |response|
+      citation_url = "http://stark-refuge-7404.herokuapp.com/citations"
+      HTTP.get(citation_url, {'Access-Control-Allow-Origin' => '*', "crossDomain" => true, "dataType" => "jsonp"}) do |response|
         stuff = response.json
         puts stuff.first['name']
         page._citation_result = stuff.first['name']

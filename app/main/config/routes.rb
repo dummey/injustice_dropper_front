@@ -2,7 +2,6 @@
 
 client '/about', action: 'about'
 client '/ticket', action: 'ticket'
-client '/pay_ticket', action: 'pay_ticket'
 client '/legal', action: 'legal'
 client '/court', action: 'court'
 client '/warrant', action: 'warrant'

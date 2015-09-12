@@ -1,0 +1,38 @@
+<:Title>
+  Tickets
+
+<:Body>
+  <h1>Tickets</h1>
+
+  <p>Please provide one of the following: Citation Number, Citation Date, Driver License Number, Full Name, DOB, Address</p>
+
+  <form e-submit="lookup_citation" role="form">
+    <div class="form-group">
+      <!-- <label for="exampleInputEmail1">Email address</label> -->
+      <input type="text" class="form-control" placeholder="Citation Number, Citation Date, Driver License Number, Full Name, DOB, Address" value="{{ page._search1 }}" />
+
+    </div>
+
+    <div class="form-group">
+      <input type="text" class="form-control" placeholder="Second piece of identification" value="{{ page._search2 }}" />
+    </div>
+
+    <div class="form-group">
+      <button e-click="lookup_citation" class="btn btn-default">Lookup Ticket</button>
+    </div>
+  </form>
+
+  <div class="result {{ unless page._citation_result }} hidden {{ end }}"> 
+    {{ page._citation_result }}
+
+    <div class="result_action">
+      <a href=" {{ url_for(action: 'pay_ticket', citation_number: page._citation_number) }}" class="btn btn-default">
+        Pay for Ticket
+      </a>
+
+      <a href="{{ url_for(action: 'legal', citation_number: page._citation_number) }}" class="btn btn-default">
+        Get Legal Help
+      </a>
+    </div>
+  </div>
+

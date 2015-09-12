@@ -5,6 +5,7 @@ client '/ticket', action: 'ticket'
 client '/pay_ticket', action: 'pay_ticket'
 client '/legal', action: 'legal'
 client '/court', action: 'court'
+client '/warrant', action: 'warrant'
 client '/your_rights', action: 'your_rights'
 
 # Routes for login and signup, provided by user_templates component gem

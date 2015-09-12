@@ -131,5 +131,15 @@ module Main
 
       `
     end
+
+    #warrant stuff
+    def lookup_warrant
+      page._warrants = [{
+        "name" => "A, RACHEL",
+        "zip_code" => "14502",
+        "date_of_birth" => "03/28/1984",
+        "case_number" => "110562986-5"
+      }]
+    end
   end
 end

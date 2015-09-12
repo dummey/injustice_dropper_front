@@ -1,0 +1,45 @@
+<:Title>
+  Warrant Lookup
+
+<:Body>
+  <h1>Warrant Lookup</h1>
+
+  <p>We can help you find any warrants on you. We can also set an alert to notify you should any happen.</p>
+
+  <div class="input-group">
+    <!-- <form e-submit="add_todo"> -->
+      <input type="text" class="form-control" placeholder="Last Name, First Name" value="{{ page._warrant_lookup }}"/>
+      <span class="input-group-btn">
+        <button type="button" e-click="lookup_warrant" class="btn btn-default {{ unless page._warrant_lookup }} disabled {{ end }}">Lookup Warrants</button>
+      </span>
+    <!-- </form> -->
+  </div>
+
+  <hr>
+
+  <div class="{{ if page._warrants.empty? }} hidden {{ end }}">
+    <h3> {{ page._warrants.count }} Warrants Found </h3>
+
+    {{ page._warrants.each do |warrant| }}
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h5> Warrant Case Number: {{ warrant._case_number }} </h5>
+        </div>
+
+        <div class="panel-body">
+          <table class="table">
+            <tr>
+              <td>Address of Ticket:</td>
+              <td>Somewhere</td>
+            </tr>
+            <tr>
+              <td>Coordinates:</td>
+              <td>Somewhere</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    {{ end }}
+  </div>
+
+

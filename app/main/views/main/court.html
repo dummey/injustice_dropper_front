@@ -43,10 +43,10 @@
             </tr>
             <tr>
               <td>Coordinates:</td>
-              <td>Somewhere</td>
+              <td>{{ page._ticket_lat }}, {{ page._ticket_lng }}</td>
             </tr>
           </table>
-          <a href class="btn btn-default">Click for street view</a>
+          <a href="https://maps.googleapis.com/maps/api/streetview?size=400x400&location={{ page._ticket_lat }},{{page._ticket_lng}}" class="btn btn-default" target="_blank">Click for street view</a>
         </div>
       </div>
 
@@ -59,7 +59,11 @@
           <table class="table">
             <tr>
               <td>Court Address:</td>
-              <td>Somewhere</td>
+              <td>{{ page._court_result._address }}</td>
+            </tr>
+            <tr>
+              <td>Coordinates:</td>
+              <td>{{ page._court_lat }}, {{ page._court_lng }}</td>
             </tr>
             <tr>
               <td>Phone Number:</td>
@@ -75,7 +79,19 @@
             </tr>
           </table>
 
-          <a href class="btn btn-default">Click for street view</a>
+          <a href="https://maps.googleapis.com/maps/api/streetview?size=400x400&location={{ page._court_lat }},{{page._court_lng}}" class="btn btn-default" target="_blank">Click for street view</a>
+        </div>
+      </div>
+
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h5> Statistics </h5>
+        </div>
+
+        <div class="panel-body">
+          <table class="table">
+
+          </table>
         </div>
       </div>
 

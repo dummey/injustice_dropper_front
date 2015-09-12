@@ -16,10 +16,9 @@ module Main
     def court_ready
 
       return 
-
+#center:new google.maps.LatLng(40.805478,-73.96522499999998),
       `function init_map(){
         var myOptions = {zoom:14,
-          center:new google.maps.LatLng(40.805478,-73.96522499999998),
           mapTypeId: google.maps.MapTypeId.ROADMAP
         };
         map = new google.maps.Map(document.getElementById("gmap_canvas"), myOptions);
@@ -99,30 +98,44 @@ module Main
       end
     end
 
+    def address_to_long_lat(address)
+      address = `encodeURIComponent(address)`
+      address_url = "http://maps.googleapis.com/maps/api/geocode/json?address=#{address}"
+      # citation_url = "http://jsonplaceholder.typicode.com/posts"
+      HTTP.get(address_url, {}) do |response|
+
+        page._stuffs = response.json
+        page._ticket_lat = page._stuffs._results.first._geometry._location._lat
+        page._ticket_lng = page._stuffs._results.first._geometry._location._lng
+      end
+    end
+
     #Court Stuff
     def lookup_court
-      page._court_result = {name: "The Blah", address: "4240 Duncan Avenue, 2nd Floor St. Louis, MO 63110"}
+      page._court_result = {name: "The Blah", address: "4240 Duncan Avenue, 2nd Floor St. Louis, MO 63110", lat: 38.6282597, lng: -90.20322449999999}
+      page._court_lat = page._court_result._lat
+      page._court_lng = page._court_result._lng
 
       map_court
     end
 
     def map_court
-      address = page._court_result._address
+      address_to_long_lat(page._court_lookup)
 
       `
-        var myOptions = {zoom:14,
-          center:new google.maps.LatLng(40.805478,-73.96522499999998),
+        var myOptions = {zoom:12,
+            center:new google.maps.LatLng(#{page._ticket_lat},#{page._ticket_lng}),
           mapTypeId: google.maps.MapTypeId.ROADMAP
         };
         map = new google.maps.Map(document.getElementById("gmap_canvas"), myOptions);
-        marker = new google.maps.Marker({map: map,position: new google.maps.LatLng(40.807, -73.96522499999998)});
-        infowindow = new google.maps.InfoWindow({content:"<b>The Breslin</b><br/>2880 Broadway<br/> New York" });
+        marker = new google.maps.Marker({map: map,position: new google.maps.LatLng(#{page._court_lat},#{page._court_lng})});
+        infowindow = new google.maps.InfoWindow({content:"Stl City Court" });
         google.maps.event.addListener(marker, "click", function(){
           infowindow.open(map,marker);
         });
         infowindow.open(map,marker);
 
-        marker2 = new google.maps.Marker({map: map,position: new google.maps.LatLng(40.8055, -73.965226)});
+        marker2 = new google.maps.Marker({map: map,position: new google.maps.LatLng(#{page._ticket_lat},#{page._ticket_lng})});
         infowindow = new google.maps.InfoWindow({content:"Shit went down here" });
         google.maps.event.addListener(marker2, "click", function(){
           infowindow.open(map,marker2);

@@ -24,9 +24,9 @@
 
   <hr>
 
-  <h3> {{ page._citations.count }} Citations Found </h3>
+  <div class="{{ if page._citations.empty? }} hidden {{ end }}"> 
+    <h3> {{ page._citations.count }} Citations Found </h3>
 
-  <div class="{{ unless page._citations }} hidden {{ end }}"> 
     {{ page._citations.each do |citation| }}
       <div class="panel panel-default">
         <div class="panel-heading">

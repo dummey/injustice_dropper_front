@@ -32,7 +32,7 @@ module Main
       }
 
         //google.maps.event.addDomListener(window, 'load', init_map);
-        //init_map()
+        init_map()
       `
     end
 

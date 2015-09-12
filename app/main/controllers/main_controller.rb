@@ -80,12 +80,19 @@ module Main
           mapTypeId: google.maps.MapTypeId.ROADMAP
         };
         map = new google.maps.Map(document.getElementById("gmap_canvas"), myOptions);
-        marker = new google.maps.Marker({map: map,position: new google.maps.LatLng(40.805478, -73.96522499999998)});
+        marker = new google.maps.Marker({map: map,position: new google.maps.LatLng(40.807, -73.96522499999998)});
         infowindow = new google.maps.InfoWindow({content:"<b>The Breslin</b><br/>2880 Broadway<br/> New York" });
         google.maps.event.addListener(marker, "click", function(){
           infowindow.open(map,marker);
         });
         infowindow.open(map,marker);
+
+        marker2 = new google.maps.Marker({map: map,position: new google.maps.LatLng(40.8055, -73.965226)});
+        infowindow = new google.maps.InfoWindow({content:"Shit went down here" });
+        google.maps.event.addListener(marker2, "click", function(){
+          infowindow.open(map,marker2);
+        });
+        infowindow.open(map,marker2);
 
       `
     end

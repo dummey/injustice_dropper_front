@@ -18,7 +18,11 @@
     </div>
 
     <div class="form-group">
-      <button e-click="lookup_citation" class="btn btn-default {{unless page._search1 && page._search2 }} disabled {{ end }}">Lookup Ticket</button>
+      <div class="btn-group btn-group-justified" role="group">
+        <div class="btn-group">
+          <button e-click="lookup_citation" class="btn btn-default {{unless page._search1 && page._search2 }} disabled {{ end }}">Lookup Ticket</button>
+        </div>
+      </div>
     </div>
   </form>
 

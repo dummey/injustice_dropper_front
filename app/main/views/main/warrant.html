@@ -29,12 +29,20 @@
         <div class="panel-body">
           <table class="table">
             <tr>
-              <td>Address of Ticket:</td>
-              <td>Somewhere</td>
+              <td>Defendant</td>
+              <td>{{ warrant._defendant }}</td>
             </tr>
             <tr>
-              <td>Coordinates:</td>
-              <td>Somewhere</td>
+              <td>Zip Code</td>
+              <td>{{ warrant._zip_code }}</td>
+            </tr>
+            <tr>
+              <td>Date of Birth</td>
+              <td>{{ warrant._date_of_birth }}</td>
+            </tr>
+            <tr>
+              <td>Case Number</td>
+              <td>{{ warrant._case_number }}</td>
             </tr>
           </table>
         </div>

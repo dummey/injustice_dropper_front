@@ -145,12 +145,12 @@ module Main
 
     #warrant stuff
     def lookup_warrant
-      page._warrants = [{
-        "name" => "A, RACHEL",
-        "zip_code" => "14502",
-        "date_of_birth" => "03/28/1984",
-        "case_number" => "110562986-5"
-      }]
+      warrant_url = "http://injustice-rest.herokuapp.com/warrants/" + page._warrant_lookup
+      # citation_url = "http://jsonplaceholder.typicode.com/posts"
+      HTTP.get(warrant_url) do |response|
+        page._stuffs = response.json
+        page._warrants = page._stuffs._warrants
+      end
     end
   end
 end

@@ -84,15 +84,13 @@ module Main
         },
       ]
 
-      #'Access-Control-Allow-Origin' => '*', 
-      citation_url = "http://stark-refuge-7404.herokuapp.com/citations"
-      # citation_url = "http://jsonplaceholder.typicode.com/posts"
-      HTTP.get(citation_url, 
-        {'Access-Control-Allow-Origin' => '*', 
-          "crossDomain" => true, 
-          "dataType" => "jsonp"} ) do |response|
 
-        puts response
+      #'Access-Control-Allow-Origin' => '*', 
+      citation_url = "http://injustice-rest.herokuapp.com/citations/" + page._search1 + ',' + page._search2
+      # citation_url = "http://jsonplaceholder.typicode.com/posts"
+      HTTP.get(citation_url) do |response|
+
+        puts response.json
 
       end
     end
@@ -128,9 +126,9 @@ module Main
 
         #create statistics hash
         page._court_stats = [
-          ["Population", page._court_result._total_population],
-          ["Fines % of GR", page._court_result._fines_percentage_of_gr],
-          ["% Below Proverity", page._court_result._demographics_below_poverty_percentage],
+          ["Population", page._court_result._total_population, "302148"],
+          ["Fines % of GR", page._court_result._fines_percentage_of_gr, "10.5"],
+          ["Pop % Below Proverity", page._court_result._demographics_below_poverty_percentage, "12.7"],
         ]
 
         map_court

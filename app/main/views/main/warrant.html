@@ -58,6 +58,11 @@
               <td>{{ warrant._case_number }}</td>
             </tr>
           </table>
+
+          <div class="btn-group btn-group-justified" role="group">
+            <a href="/legal" class="btn btn-default">Get Legal Help</a>
+            <a href="mailto:tomorrow@nudgemail.com?Subject=Remember to deal with violation {{ violation._violation_number }}" class="btn btn-default"> Set a email reminder </a>
+          </div>
         </div>
       </div>
     {{ end }}

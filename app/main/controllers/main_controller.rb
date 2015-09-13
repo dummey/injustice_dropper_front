@@ -142,7 +142,7 @@ module Main
           infowindow.open(map,marker);
 
           marker2 = new google.maps.Marker({map: map,position: new google.maps.LatLng(#{page._ticket_lat},#{page._ticket_lng})});
-          infowindow = new google.maps.InfoWindow({content:"Shit went down here" });
+          infowindow = new google.maps.InfoWindow({content:"Site of Ticket" });
           google.maps.event.addListener(marker2, "click", function(){
             infowindow.open(map,marker2);
           });

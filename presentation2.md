@@ -18,7 +18,7 @@ In following the spirit of OpenDataSTL, we have built a powerful REST backend fo
 
 As with all things legal, it's a mess, thus we have compiled a section for helping find legal help. [Legal help section]
 
-[court lookup demo] For those that need help finding the court that they need to contest at, we have a powerful freeform court lookup tool.
+[court lookup demo] For those that need help finding the court that they need to contest at, we have a powerful freeform court lookup tool. With all our tools, we attempt to provide as much context as we can so citizens can make informed decisions.
 
 [ticket lookup demo] And who hasn't lost their ticket before? We have a easy way to look up your citations! We can even direct you to the correct payment system or set reminders.
 

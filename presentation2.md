@@ -14,7 +14,7 @@ Warrant Lookup:
 
 [our system is extendable to other problems such as school distict mapping, etc]
 
-In following the spirit of OpenDataSTL, we have built a powerful REST backend for accessing and analyzing court data. On top of that, we have built a lean web app so that citizens can navigate the maze that is the Municipal Court System. 
+In following the spirit of OpenDataSTL, we have built a powerful REST backend for accessing and analyzing court data. On top of that, we have built a lean, mobile-ready web app so that citizens can navigate the maze that is the Municipal Court System. 
 
 As with all things legal, it's a mess, thus we have compiled a section for helping find legal help. [Legal help section]
 

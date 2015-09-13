@@ -111,18 +111,30 @@ module Main
 
     #Court Stuff
     def lookup_court
+      court_lookup_url = "http://injustice-rest.herokuapp.com/courts/" + page._court_lookup
       page._court_result = {name: "STL City Court", address: "1520 Market St, St Louis, MO 63103, USA", lat: 38.6282597, lng: -90.20322449999999}
-      page._court_lat = page._court_result._lat
-      page._court_lng = page._court_result._lng
+      
+      HTTP.get(court_lookup_url) do |response|
+        page._stuffs = response.json
+        page._stuff = page._stuffs._courts
 
-      map_court
+        key = page._stuff.keys.first
+        page._court_result = page._stuff.get(key)
+
+        #making it easier to get to
+        page._court_name = key
+        page._court_lat = page._court_result._lat
+        page._court_lng = page._court_result._lng
+
+        map_court
+      end
     end
 
     def map_court
       address = `encodeURIComponent(#{page._court_lookup})`
       address_url = "http://maps.googleapis.com/maps/api/geocode/json?address=#{address}"
       # citation_url = "http://jsonplaceholder.typicode.com/posts"
-      HTTP.get(address_url, {}) do |response|
+      HTTP.get(address_url) do |response|
         page._stuffs = response.json
         page._ticket_lat = page._stuffs._results.first._geometry._location._lat
         page._ticket_lng = page._stuffs._results.first._geometry._location._lng
@@ -135,7 +147,7 @@ module Main
           };
           map = new google.maps.Map(document.getElementById("gmap_canvas"), myOptions);
           marker = new google.maps.Marker({map: map,position: new google.maps.LatLng(#{page._court_lat},#{page._court_lng})});
-          infowindow = new google.maps.InfoWindow({content: #{page._court_result._name} });
+          infowindow = new google.maps.InfoWindow({content: #{page._court_name} });
           google.maps.event.addListener(marker, "click", function(){
             infowindow.open(map,marker);
           });

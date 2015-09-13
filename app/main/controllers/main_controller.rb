@@ -14,7 +14,6 @@ module Main
     end
 
     def court_ready
-
       return 
 #center:new google.maps.LatLng(40.805478,-73.96522499999998),
       `function init_map(){
@@ -124,13 +123,14 @@ module Main
         page._ticket_lng
 
         `
-          var myOptions = {zoom:12,
-              center:new google.maps.LatLng(#{page._ticket_lat},#{page._ticket_lng}),
+          var myOptions = {
+            zoom:12,
+            center:new google.maps.LatLng(#{page._ticket_lat},#{page._ticket_lng}),
             mapTypeId: google.maps.MapTypeId.ROADMAP
           };
           map = new google.maps.Map(document.getElementById("gmap_canvas"), myOptions);
           marker = new google.maps.Marker({map: map,position: new google.maps.LatLng(#{page._court_lat},#{page._court_lng})});
-          infowindow = new google.maps.InfoWindow({content:"#{page._court_result.name}" });
+          infowindow = new google.maps.InfoWindow({content: #{page._court_result._name} });
           google.maps.event.addListener(marker, "click", function(){
             infowindow.open(map,marker);
           });

@@ -132,20 +132,29 @@
               </tr>
               <tr>
                 <td>
+                  Average Fine Amount
+                </td>
+                <td>
+                  ${{ average_fine(violation._violation_description)._fine_amount }}
+                </td>
+              </tr>
+              <tr>
+                <td>
                   Court Cost
                 </td>
                 <td>
                   {{ violation._court_cost }}
                 </td>
               </tr>
+              <tr>
+                <td>
+                  Average Court Cost
+                </td>
+                <td>
+                  ${{ average_fine(violation._violation_description)._court_cost}}
+                </td>
+              </tr>
             </table>
-
-            Percentage of open violations of this type:
-            - 40%
-
-            Breakdown of how this type of violation is handled:
-            - 10% payment 
-            - 50% cont for payment
 
             <div class="btn-group btn-group-justified" role="group">
                 <div class="btn-group">

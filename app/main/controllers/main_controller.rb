@@ -69,6 +69,14 @@ module Main
       end
     end
 
+    def average_fine(ticket)
+      if page._fines.empty?
+        page._fines = {'No Brake Lights' => {'fine_amount' => 99.34558139534883, 'court_cost' => 24.5}, 'No License Plates' => {'fine_amount' => 109.34285714285711, 'court_cost' => 24.5}, 'Improper Passing' => {'fine_amount' => 97.60214285714285, 'court_cost' => 24.5}, 'Failure to Obey Electric Signal' => {'fine_amount' => 104.24874999999997, 'court_cost' => 24.5}, 'Parking in Fire Zone' => {'fine_amount' => 92.1607142857143, 'court_cost' => 24.5}, "No Driver's License" => {'fine_amount' => 90.86808510638296, 'court_cost' => 24.5}, 'Failure to Yield' => {'fine_amount' => 100.02666666666669, 'court_cost' => 24.5}, 'No Insurance [no compliance]' => {'fine_amount' => 109.55645161290323, 'court_cost' => 24.5}, 'No Inspection Sticker' => {'fine_amount' => 115.71372549019605, 'court_cost' => 24.5}, 'Prohibited U-Turn' => {'fine_amount' => 102.67282051282051, 'court_cost' => 24.5}, 'Expired License Plates (Tags)' => {'fine_amount' => 98.47949152542374, 'court_cost' => 24.5}}
+      end
+
+      page._fines.get(ticket)
+    end
+
     # def address_to_long_lat(address)
     #   address = `encodeURIComponent(address)`
     #   address_url = "http://maps.googleapis.com/maps/api/geocode/json?address=#{address}"

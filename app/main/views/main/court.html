@@ -89,9 +89,22 @@
         </div>
 
         <div class="panel-body">
-          <table class="table">
 
+          <table class="table">
+            <tr>
+            </tr>
+            {{ page._court_stats.each do |v| }}
+              <tr>
+                <td>
+                  {{v[0]}}:
+                </td>
+                <td>
+                  {{v[1]}}
+                </td>
+              </tr>
+            {{ end }}
           </table>
+
         </div>
       </div>
 

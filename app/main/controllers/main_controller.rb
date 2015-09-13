@@ -126,6 +126,13 @@ module Main
         page._court_lat = page._court_result._lat
         page._court_lng = page._court_result._lng
 
+        #create statistics hash
+        page._court_stats = [
+          ["Total Population", page._court_result._total_population],
+          ["Fines % of GR", page._court_result._fines_percentage_of_gr],
+          ["% Below Proverity", page._court_result._demographics_below_poverty_percentage],
+        ]
+
         map_court
       end
     end

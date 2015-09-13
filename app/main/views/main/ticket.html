@@ -27,10 +27,10 @@
   <div class="{{ if page._citations.empty? }} hidden {{ end }}"> 
     <h3> {{ page._citations.count }} Citations Found </h3>
 
-    {{ page._citations.each do |citation| }}
+    {{ page._citations.each_with_index do |citation, index| }}
       <div class="panel panel-default">
         <div class="panel-heading">
-          <h5>Citation: <b>{{ citation._citation_number }}</b></h5>
+          <h5> ({{index+1}}/{{page._citations.count}}) Citation: <b>{{ citation._citation_number }}</b></h5>
         </div>
         <div class="panel-body">
           <table class="table">
@@ -67,9 +67,9 @@
           </table>
         </div>
 
-        {{ citation._violations.each do |violation| }}
+        {{ citation._violations.each_with_index do |violation, index| }}
           <div class="panel-heading">
-            <h5>Violation: <b>{{ violation._violation_number }}</b></h5>
+            <h5>({{index+1}}/{{citation._violations.count}}) Violation: <b>{{ violation._violation_number }}</b></h5>
           </div>
           <div class="panel-body">
 

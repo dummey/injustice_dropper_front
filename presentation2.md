@@ -24,3 +24,4 @@ As with all things legal, it's a mess, thus we have compiled a section for helpi
 
 [warrant lookup demo] Stuff happens in life, maybe you have an active warrant; our warrant lookup tool can tell you if you are screwed!!! Additionally, you can set an alert for any newcoming warrant.
 
+Our system is live and running. Just feed it data from any municipality or region to enable citizens power over their court system.  

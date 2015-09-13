@@ -147,7 +147,7 @@ module Main
           };
           map = new google.maps.Map(document.getElementById("gmap_canvas"), myOptions);
           marker = new google.maps.Marker({map: map,position: new google.maps.LatLng(#{page._court_lat},#{page._court_lng})});
-          infowindow = new google.maps.InfoWindow({content: #{page._court_name} });
+          infowindow = new google.maps.InfoWindow({content: #{page._court_name.to_s} });
           google.maps.event.addListener(marker, "click", function(){
             infowindow.open(map,marker);
           });

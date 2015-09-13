@@ -59,7 +59,7 @@
           <table class="table">
             <tr>
               <td>Court Address:</td>
-              <td>{{ page._court_result._address }}</td>
+              <td>{{ page._court_result._address || "Missing from DB, Bug Drew" }}</td>
             </tr>
             <tr>
               <td>Coordinates:</td>
@@ -67,15 +67,15 @@
             </tr>
             <tr>
               <td>Phone Number:</td>
-              <td>Somewhere</td>
+              <td>{{ page._court_result._phone || "None Provided" }}</td>
             </tr>
             <tr>
               <td>Website:</td>
-              <td>Somewhere</td>
+              <td></td>
             </tr>
             <tr>
               <td>Email:</td>
-              <td>Somewhere</td>
+              <td></td>
             </tr>
           </table>
 

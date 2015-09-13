@@ -97,16 +97,17 @@ module Main
       end
     end
 
-    def address_to_long_lat(address)
-      address = `encodeURIComponent(address)`
-      address_url = "http://maps.googleapis.com/maps/api/geocode/json?address=#{address}"
-      # citation_url = "http://jsonplaceholder.typicode.com/posts"
-      HTTP.get(address_url, {}) do |response|
-        page._stuffs = response.json
-        page._ticket_lat = page._stuffs._results.first._geometry._location._lat
-        page._ticket_lng = page._stuffs._results.first._geometry._location._lng
-      end
-    end
+    # def address_to_long_lat(address)
+    #   address = `encodeURIComponent(address)`
+    #   address_url = "http://maps.googleapis.com/maps/api/geocode/json?address=#{address}"
+    #   # citation_url = "http://jsonplaceholder.typicode.com/posts"
+    #   HTTP.get(address_url, {}) do |response|
+    #     page._stuffs = response.json
+    #     page._ticket_lat = page._stuffs._results.first._geometry._location._lat
+    #     page._ticket_lng = page._stuffs._results.first._geometry._location._lng
+
+    #   end
+    # end
 
     #Court Stuff
     def lookup_court
@@ -118,9 +119,13 @@ module Main
     end
 
     def map_court
-      address_to_long_lat(page._court_lookup).then do
-        page._ticket_lat
-        page._ticket_lng
+      address = `encodeURIComponent(#{page._court_lookup})`
+      address_url = "http://maps.googleapis.com/maps/api/geocode/json?address=#{address}"
+      # citation_url = "http://jsonplaceholder.typicode.com/posts"
+      HTTP.get(address_url, {}) do |response|
+        page._stuffs = response.json
+        page._ticket_lat = page._stuffs._results.first._geometry._location._lat
+        page._ticket_lng = page._stuffs._results.first._geometry._location._lng
 
         `
           var myOptions = {

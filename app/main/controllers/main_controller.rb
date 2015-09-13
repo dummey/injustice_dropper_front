@@ -50,48 +50,12 @@ module Main
     end
 
     def lookup_citation
-      page._citations = [
-       {
-          "id" => 1,
-          "citation_number" => 789674515,
-          "citation_date" => "2015-03-09",
-          "first_name" => "Wanda                                                                                                                                                                                                   ",
-          "last_name" => "Phillips                                                                                                                                                                                                ",
-          "date_of_birth" => "1975-12-30",
-          "defendant_address" => "0 Erie Road                                                                                                                                                                                             ",
-          "defendant_city" => "DES PERES                                                                                                                                                                                               ",
-          "defendant_state" => "MO",
-          "drivers_license_number" => "O890037612                                                                                                                                                                                              ",
-          "court_date" => "2015-11-12",
-          "court_location" => "COUNTRY CLUB HILLS                                                                                                                                                                                      ",
-          "court_address" => "7422 Eunice Avenue ",
-          "violations" => [{name: "hello world"}, {name: "Bye night"}]
-        },
-        {
-          "id" => 2,
-          "citation_number" => 513276502,
-          "citation_date" => "2015-03-15",
-          "first_name" => "Mildred                                                                                                                                                                                                 ",
-          "last_name" => "Collins                                                                                                                                                                                                 ",
-          "date_of_birth" => "1960-10-31",
-          "defendant_address" => "856 Banding Trail                                                                                                                                                                                       ",
-          "defendant_city" => "CHESTERFIELD                                                                                                                                                                                            ",
-          "defendant_state" => "MO",
-          "drivers_license_number" => "",
-          "court_date" => "2015-09-16",
-          "court_location" => "FLORISSANT                                                                                                                                                                                              ",
-          "court_address" => "315 Howdershell Road                                                                                                                                                                                    "
-        },
-      ]
-
-
       #'Access-Control-Allow-Origin' => '*', 
       citation_url = "http://injustice-rest.herokuapp.com/citations/" + page._search1 + ',' + page._search2
       # citation_url = "http://jsonplaceholder.typicode.com/posts"
       HTTP.get(citation_url) do |response|
-
-        puts response.json
-
+        page._stuffs = response.json
+        page._citations = page._stuffs._citations
       end
     end
 

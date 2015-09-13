@@ -6,6 +6,11 @@ end
 module Main
   class MainController < Volt::ModelController
     def index
+      page._num_active_violation = 1000 * 100 - 31234
+      # p ticker
+      `window.setInterval(function() {
+        #{page._num_active_violation -= 1};
+        }, 250)`
       # Add code for when the index view is loaded
     end
 
@@ -35,6 +40,11 @@ module Main
     end
 
     private
+
+    #index stuff
+    def ticker
+      page._num_active_violation -= 1
+    end
 
     # The main template contains a #template binding that shows another
     # template.  This is the path to that template.  It may change based

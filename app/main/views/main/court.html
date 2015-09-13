@@ -96,6 +96,9 @@
 
           <table class="table">
             <tr>
+              <td> </td>
+              <td>Municipal</td>
+              <td>County Average</td>
             </tr>
             {{ page._court_stats.each do |v| }}
               <tr>
@@ -104,6 +107,9 @@
                 </td>
                 <td>
                   {{v[1]}}
+                </td>
+                <td>
+                  {{v[2]}}
                 </td>
               </tr>
             {{ end }}

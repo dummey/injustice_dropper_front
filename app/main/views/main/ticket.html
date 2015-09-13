@@ -135,7 +135,7 @@
                   Average Fine Amount
                 </td>
                 <td>
-                  ${{ average_fine(violation._violation_description)._fine_amount }}
+                  ${{ average_fine(violation._violation_description)._fine_amount.round(2) }}
                 </td>
               </tr>
               <tr>
@@ -151,7 +151,7 @@
                   Average Court Cost
                 </td>
                 <td>
-                  ${{ average_fine(violation._violation_description)._court_cost}}
+                  ${{ average_fine(violation._violation_description)._court_cost.round(2) }}
                 </td>
               </tr>
             </table>

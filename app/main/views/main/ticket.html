@@ -54,7 +54,7 @@
             </tr>
             <tr>
               <td>Citation Date</td>
-              <td>{{ citation._citation_date }}</td>
+              <td>{{ citation._citation_date.to_s }}</td>
             </tr>
             <tr>
               <td>Court Date</td>
@@ -94,22 +94,24 @@
                   {{ violation._violation_description}}
                 </td>
               </tr>
-              <tr>
-                <td>
-                  Warrant Status
-                </td>
-                <td> 
-                  {{ violation._warrant_status}}
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  Warrant Number
-                </td>
-                <td>
-                  {{ violation._warrant_number }}
-                </td>
-              </tr>
+              {{ if violation._warrant_status }}
+                <tr>
+                  <td>
+                    <b>Warrant Status</b>
+                  </td>
+                  <td> 
+                    <b>{{ violation._warrant_status}}</b>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <b>Warrant Number</b>
+                  </td>
+                  <td>
+                    <b>{{ violation._warrant_number }}</b>
+                  </td>
+                </tr>
+              {{ end }}
               <tr>
                 <td>
                   Status
